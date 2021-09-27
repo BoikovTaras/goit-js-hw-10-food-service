@@ -1,9 +1,6 @@
 const chektBt = document.querySelector('#theme-switch-toggle');
 const bodyClass = document.querySelector('body');
 bodyClass.classList.add(localStorage.getItem('theme'));
-// if (localStorage.getItem('theme') === 'dark-theme') {
-//     chektBt.target.checked = true;
-// }
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -13,12 +10,13 @@ const Theme = {
 chektBt.addEventListener('change', (e) => {
     if (e.target.checked) {
         localStorage.setItem('theme', Theme.DARK);
-        bodyClass.classList.replace('light-theme', 'dark-theme');
+        bodyClass.classList.replace(Theme.LIGHT, Theme.DARK);
     } else {
         localStorage.setItem('theme', Theme.LIGHT);
-        bodyClass.classList.replace('dark-theme', 'light-theme');
-     
+        bodyClass.classList.replace(Theme.DARK, Theme.LIGHT);
     }
 });
 
-
+if (localStorage.getItem('theme') === Theme.DARK) {
+   chektBt.checked = true; 
+};
